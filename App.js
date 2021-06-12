@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Dimensions, StyleSheet, Text, View } from 'react-native';
+import { Dimensions, StyleSheet, Text, View , TouchableWithoutFeedback, Touchable} from 'react-native';
 import Bird from './components/bird'
 import Obstacles from './components/obstacles';
 
@@ -9,7 +9,7 @@ export default function App() {
 
   const screenWidth = Dimensions.get("screen").width
   const screenHeight = Dimensions.get("screen").height
-  const birdLeft = screenWidth / 2
+  const [birdLeft,setBirdLeft] = useState(screenWidth / 2)
   const [BirdBottom, setBirdBottom] = useState(screenHeight / 2)
   const [obstaclesLeft, setObstaclesLeft] =useState(screenWidth)
   const [obstaclesLeftTwo, setObstaclesLeftTwo] =useState(screenWidth + screenWidth/2 + 30)
@@ -22,6 +22,7 @@ export default function App() {
   let gameTimerId
   let obstaclesLeftTımerId
   let obstaclesLeftTımerIdTwo
+  const [isGameOver,setIsGameOver] = useState(false)
 
   //start bird failing
   useEffect(() => {
@@ -36,6 +37,13 @@ export default function App() {
 
    }, [BirdBottom])
     console.log(BirdBottom)
+
+    const jump = () =>{
+        if(!isGameOver && (BirdBottom < screenHeight)){
+          setBirdBottom(BirdBottom => BirdBottom + 50)
+          console.log('jumped')
+        }
+    }
     
     //start first obstacles
     useEffect(() =>{
@@ -75,13 +83,40 @@ export default function App() {
 
 
     //check for collisions
-    
+    useEffect(()=>{
+        if(
+        ((BirdBottom < (obstaclesNegHeight + obstacleHeight + 30)  ||  
+        BirdBottom > (obstaclesNegHeight + obstacleHeight + gap -30)) &&
+        (obstaclesLeft > screenWidth/2 - 30 && obstaclesLeft < screenWidth/2 + 30)
+        )
+        ||
+         ((BirdBottom < (obstaclesNegHeightTwo + obstacleHeight + 30)  ||  
+        BirdBottom > (obstaclesNegHeightTwo + obstacleHeight + gap - 30)) &&
+        (obstaclesLeftTwo > screenWidth/2 - 30 && obstaclesLeftTwo < screenWidth/2 + 30) 
+        )
+        )
+        {
+        console.log("game over")
+        gameOver()
+        
+        }
+
+    })
 
 
-
+    const gameOver = () =>{
+      setBirdLeft(screenWidth / 2)
+      setBirdBottom(screenHeight/ 2)
+      setObstaclesLeft(screenWidth)
+      setObstaclesLeftTwo(screenWidth + screenWidth/2 + 30)
+      setObstaclesNegHeight(0)
+      setObstaclesNegHeightTwo (0)
+  
+    }
 
   return (
-    <View style={styles.container}>
+    <TouchableWithoutFeedback onPress={jump}>
+        <View style={styles.container}>
       <Bird
         BirdBottom={BirdBottom}
         birdLeft={birdLeft}
@@ -106,6 +141,9 @@ export default function App() {
     />
 
     </View>
+
+    </TouchableWithoutFeedback>
+    
   );
 }
 
