@@ -1,7 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { Dimensions, StyleSheet, Text, View } from 'react-native';
 
-const Obstacles = ({color,obstaclesLeft,obstacleWdith,obstacleHeight,gap}) =>{
+const Obstacles = ({color,
+    obstaclesLeft,
+    obstacleWdith,
+    obstacleHeight,
+    gap,
+    randomBottom,
+}) =>{
     
     return(
         <>
@@ -11,7 +17,7 @@ const Obstacles = ({color,obstaclesLeft,obstacleWdith,obstacleHeight,gap}) =>{
                 width: obstacleWdith,
                 height: obstacleHeight,
                 left: obstaclesLeft,
-                bottom: 0 + obstacleHeight + gap,
+                bottom: randomBottom + obstacleHeight + gap,
 
             }}
                         
@@ -23,7 +29,7 @@ const Obstacles = ({color,obstaclesLeft,obstacleWdith,obstacleHeight,gap}) =>{
                 width: obstacleWdith,
                 height: obstacleHeight,
                 left : obstaclesLeft,
-                bottom: 0,
+                bottom: randomBottom,
 
             }}
                         
