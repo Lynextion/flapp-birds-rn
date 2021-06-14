@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Dimensions, StyleSheet, Text, View } from 'react-native';
+import { Dimensions, StyleSheet, Text, View ,Image } from 'react-native';
 
 const Obstacles = ({color,
     obstaclesLeft,
@@ -11,9 +11,9 @@ const Obstacles = ({color,
     
     return(
         <>
-            <View style={{
+            <Image source={require("/home/lynextion/flapp-birds-rn/assets/obstacle_up.png")} style={{
                 position:'absolute',
-                backgroundColor: color,               
+                backgroundColor: 'transparent',               
                 width: obstacleWdith,
                 height: obstacleHeight,
                 left: obstaclesLeft,
@@ -23,9 +23,9 @@ const Obstacles = ({color,
                         
             />
 
-            <View style={{
+            <Image source={require("/home/lynextion/flapp-birds-rn/assets/obstacle_down.png")}style={{
                 position:'absolute',
-                backgroundColor: color,               
+                backgroundColor: 'transparent',              
                 width: obstacleWdith,
                 height: obstacleHeight,
                 left : obstaclesLeft,

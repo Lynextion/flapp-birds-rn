@@ -16,7 +16,7 @@ export default function App() {
   const [obstaclesNegHeightTwo,setObstaclesNegHeightTwo] =useState(0)
   const obstacleHeight = 400
   const obstacleWdith = 60
-  const gravity = 8
+  const gravity = 10
   const gap = 200
   let gameTimerId
   let obstaclesLeftTımerId
@@ -114,14 +114,15 @@ export default function App() {
     }
 
   return (
+    <ImageBackground resizeMode='cover' source={require("./assets/bg.png")} style={styles.background}>
     <TouchableWithoutFeedback onPress={jump}>
-      <ImageBackground resizeMode='cover' source={require("./assets/bg.png")} style={styles.background}>
+      
         <View style={styles.container}>
       <Bird
         BirdBottom={BirdBottom}
         birdLeft={birdLeft}
       />
-
+    
       <Obstacles
       color={'yellow'}
       obstaclesLeft={obstaclesLeft}
@@ -140,9 +141,8 @@ export default function App() {
       gap={gap}
     /> 
     </View>
-    </ImageBackground>
     </TouchableWithoutFeedback>
-   
+    </ImageBackground>
   );
 }
 
