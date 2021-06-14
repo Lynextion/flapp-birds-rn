@@ -4,14 +4,14 @@
 
 - **If it is not installed, install node.js last version**
     `  sudo apt install nodejs `
-- ** Install Expo **
+- **Install Expo**
      ` npm install expo-cli --global`
 - **Install Expo Go app to your phone**
 # **How to set up**
 
 - **Clone the repository**
 - **Change directory to the repository**
-- **Start the Expo with `expo start`**
+- **Start the Expo with** `expo start`
 - **Open the expo go app from your phone and read the QR code.**
 
 # **Build the game**
