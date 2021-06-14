@@ -1,14 +1,13 @@
 import React, { useEffect, useState } from 'react';
-import { Dimensions, StyleSheet, Text, View , TouchableWithoutFeedback, Touchable} from 'react-native';
+import { Dimensions, StyleSheet, Text, View , TouchableWithoutFeedback, Touchable,ImageBackground} from 'react-native';
 import Bird from './components/bird'
 import Obstacles from './components/obstacles';
 
 
-
 export default function App() {
 
-  const screenWidth = Dimensions.get("screen").width
-  const screenHeight = Dimensions.get("screen").height
+  let screenWidth = Dimensions.get("screen").width
+  let screenHeight = Dimensions.get("screen").height
   const [birdLeft,setBirdLeft] = useState(screenWidth / 2)
   const [BirdBottom, setBirdBottom] = useState(screenHeight / 2)
   const [obstaclesLeft, setObstaclesLeft] =useState(screenWidth)
@@ -17,7 +16,7 @@ export default function App() {
   const [obstaclesNegHeightTwo,setObstaclesNegHeightTwo] =useState(0)
   const obstacleHeight = 400
   const obstacleWdith = 60
-  const gravity = 3
+  const gravity = 8
   const gap = 200
   let gameTimerId
   let obstaclesLeftTımerId
@@ -116,6 +115,7 @@ export default function App() {
 
   return (
     <TouchableWithoutFeedback onPress={jump}>
+      <ImageBackground resizeMode='cover' source={require("./assets/bg.png")} style={styles.background}>
         <View style={styles.container}>
       <Bird
         BirdBottom={BirdBottom}
@@ -138,20 +138,28 @@ export default function App() {
       obstacleHeight={obstacleHeight}
       randomBottom={obstaclesNegHeightTwo}
       gap={gap}
-    />
-
+    /> 
     </View>
-
+    </ImageBackground>
     </TouchableWithoutFeedback>
-    
+   
   );
 }
 
+let screenWidth = Dimensions.get("screen").width
+let screenHeight = Dimensions.get("screen").height
+
 const styles = StyleSheet.create({
+  
+  background: {
+    flex:1,
+    width: screenWidth,
+    height: screenHeight,
+  },
+
   container: {
     flex: 1,
-    backgroundColor: 'white',
-    alignItems: 'center',
+    alignItems:'center',
     justifyContent: 'center',
   },
 });
