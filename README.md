@@ -23,7 +23,7 @@
 
 **Honestly, I don't think there is anyone who doesn't know how to play flappy bird.. It is simple just tap the screen and do not crash with obstacles :)**
 
-**Why ı write this "game" ?**
+# **Why ı write this "game" ?**
 
 **I am try to learn React with expo so it turn out this "game" . Also i was write this game for mobile phones. You can play with web browser but just don't.**
 
